@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Helmith · Trade</title>
+<meta name="description" content="Trade Lighter perpetual markets on Robinhood Chain from Helmith. Non-custodial: your wallet, your keys, your margin.">
+<meta name="theme-color" content="#0c1417">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://helmith.com/trade.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Helmith">
+<meta property="og:title" content="Helmith · Trade">
+<meta property="og:description" content="Trade Lighter perpetual markets on Robinhood Chain from Helmith. Non-custodial: your wallet, your keys, your margin.">
+<meta property="og:url" content="https://helmith.com/trade.html">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body data-page="trade">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <svg class="mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="27" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="32" cy="32" r="22.5" stroke="currentColor" stroke-width="1.2" opacity="0.45"/>
+        <circle cx="32" cy="32" r="7.5" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="32" cy="32" r="2.2" fill="currentColor"/>
+        <g stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <path d="M32 9.5 V24.5"/><path d="M32 39.5 V54.5"/><path d="M9.5 32 H24.5"/><path d="M39.5 32 H54.5"/>
+          <path d="M16.1 16.1 L26.6 26.6"/><path d="M37.4 37.4 L47.9 47.9"/>
+          <path d="M47.9 16.1 L37.4 26.6"/><path d="M26.6 37.4 L16.1 47.9"/>
+        </g>
+        <g fill="currentColor">
+          <circle cx="32" cy="8.2" r="2.4"/><circle cx="32" cy="55.8" r="2.4"/>
+          <circle cx="8.2" cy="32" r="2.4"/><circle cx="55.8" cy="32" r="2.4"/>
+          <circle cx="15.15" cy="15.15" r="2.4"/><circle cx="48.85" cy="48.85" r="2.4"/>
+          <circle cx="48.85" cy="15.15" r="2.4"/><circle cx="15.15" cy="48.85" r="2.4"/>
+        </g>
+      </svg>
+      <span class="name">Helmith</span>
+    </a>
+    <ul class="menu" id="menu">
+      <li><a href="trade.html" aria-current="page">Trade</a></li>
+      <li><a href="desk.html">Desk</a></li>
+      <li><a href="markets.html">Markets</a></li>
+      <li><a href="agent.html">Agent</a></li>
+      <li><a href="risk.html">Risk</a></li>
+      <li><a href="roadmap.html">Roadmap</a></li>
+      <li><a href="token.html">Token</a></li>
+      <li><a href="docs.html">Docs</a></li>
+    </ul>
+    <div class="actions">
+      <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="menu">☰</button>
+      <a class="btn primary" href="trade.html">Open the desk</a>
+    </div>
+  </div>
+</header>
+<main id="main" class="trade-main">
+
+  <div class="trade-banner" id="net-banner"></div>
+
+  <div class="wrap trade-toolbar">
+    <div class="net-switch" role="group" aria-label="Lighter environment">
+      <button type="button" id="btn-testnet" class="net-btn" data-net="testnet">Testnet</button>
+      <button type="button" id="btn-mainnet" class="net-btn" data-net="mainnet">Mainnet</button>
+    </div>
+    <p class="trade-status" id="signer-status">Loading the Lighter signer…</p>
+    <div class="wallet-box">
+      <span id="wallet-label" class="wallet-label">No wallet connected</span>
+      <button type="button" class="btn primary" id="btn-connect">Connect wallet</button>
+    </div>
+  </div>
+
+  <div class="wrap trade-notice" id="legal-notice">
+    <p><strong>Trades execute on Lighter.</strong> Helmith is an interface. Helmith never holds your funds or keys; orders are signed in this browser and sent to Lighter’s public API. Perpetual contracts are leveraged and can go to zero, including by liquidation. Nothing here is an offer, a solicitation, or advice to trade.</p>
+    <p>Lighter’s terms restrict access from some countries, including the United States, Canada and the United Kingdom, among others. Those terms belong to Lighter and can change. Do not use this interface to get around them. Read Lighter’s terms before you trade.</p>
+  </div>
+
+  <div class="wrap trade-grid">
+    <aside class="trade-col markets-col panel">
+      <h2>Markets</h2>
+      <input class="search" id="msearch" type="search" placeholder="Find a market" autocomplete="off">
+      <div id="market-list"><p class="muted">Reading Lighter…</p></div>
+    </aside>
+
+    <section class="trade-col book-col">
+      <div class="panel">
+        <div class="panel-head">
+          <h2 id="book-title">Order book</h2>
+          <span class="src-tag" id="book-src"></span>
+        </div>
+        <div class="book-mid" id="book-mid">—</div>
+        <div class="book" id="order-book"><p class="muted">Waiting for the public book.</p></div>
+      </div>
+      <div class="panel">
+        <h2>Recent trades</h2>
+        <div id="tape"><p class="muted">Waiting for the public tape.</p></div>
+      </div>
+    </section>
+
+    <section class="trade-col ticket-col panel" id="ticket-panel">
+      <h2>Order ticket</h2>
+      <p class="muted" id="ticket-hint">Connect a wallet to place a real order on Lighter. No rehearsal fills will be shown.</p>
+      <div class="side-toggle" role="group" aria-label="Side">
+        <button type="button" class="side-btn long on" data-side="long">Long</button>
+        <button type="button" class="side-btn short" data-side="short">Short</button>
+      </div>
+      <div class="seg" role="group" aria-label="Order type">
+        <button type="button" class="seg-btn on" data-type="market">Market</button>
+        <button type="button" class="seg-btn" data-type="limit">Limit</button>
+      </div>
+      <label class="field">Size (USDG)
+        <input id="ord-size" inputmode="decimal" placeholder="0.00" autocomplete="off">
+      </label>
+      <label class="field" id="price-field" hidden>Limit price
+        <input id="ord-price" inputmode="decimal" placeholder="Price" autocomplete="off">
+      </label>
+      <label class="field">Slippage, market orders (%)
+        <input id="ord-slip" inputmode="decimal" value="1" autocomplete="off">
+      </label>
+      <label class="field">Leverage
+        <div class="lev-row">
+          <input id="ord-lev" type="range" min="1" max="10" step="1" value="5">
+          <span id="ord-lev-val" class="mono">5×</span>
+        </div>
+        <span class="field-note" id="lev-note"></span>
+      </label>
+      <label class="check"><input type="checkbox" id="ord-unlock-lev"> Allow leverage above 10×, up to the venue cap for this market</label>
+      <p class="warn" id="lev-warn" hidden>Leverage above 10× can be liquidated by a small move. The venue cap is not Helmith’s cap, and a cap is not a promise that the position cannot be liquidated.</p>
+      <label class="check"><input type="checkbox" id="ord-reduce"> Reduce only</label>
+      <label class="field">Take profit (optional)
+        <input id="ord-tp" inputmode="decimal" placeholder="Trigger price" autocomplete="off">
+      </label>
+      <label class="field">Stop loss (optional)
+        <input id="ord-sl" inputmode="decimal" placeholder="Trigger price" autocomplete="off">
+      </label>
+      <button type="button" class="btn primary btn-wide" id="btn-submit" disabled>Connect to trade</button>
+      <p class="ticket-msg" id="ticket-msg" hidden></p>
+    </section>
+  </div>
+
+  <div class="wrap trade-account panel" id="account-panel">
+    <div class="panel-head">
+      <h2>Your account</h2>
+      <span id="account-meta" class="muted"></span>
+    </div>
+    <div id="account-body"><p class="muted">Connect a wallet to read a real Lighter account for that address. Until one exists, this stays empty.</p></div>
+    <div class="funds" id="funds-panel" hidden>
+      <h3>Deposit and withdraw</h3>
+      <div id="funds-body"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="panel">
+      <h2>Positions</h2>
+      <div id="positions"><p class="muted">No wallet connected.</p></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Open orders</h2>
+        <button type="button" class="btn" id="btn-cancel-all" hidden>Cancel all</button>
+      </div>
+      <div id="orders"><p class="muted">No wallet connected.</p></div>
+    </div>
+    <div class="panel">
+      <h2>Fills</h2>
+      <div id="fills"><p class="muted">No wallet connected.</p></div>
+    </div>
+  </div>
+
+  <div class="wrap trade-key panel" id="key-panel">
+    <h2>API key</h2>
+    <p>Orders are signed in this browser with a Lighter API key generated on your device. The private key is stored only in this browser’s localStorage, encrypted with a signature from your wallet. Helmith has no server that could hold it. If you clear this site’s data, you will need to register a new key at the same index. Index 8 is reserved for this interface so a new key here will not replace keys used by Lighter’s own apps.</p>
+    <p id="key-status" class="muted">No key on this device yet.</p>
+    <div class="ctas">
+      <button type="button" class="btn" id="btn-unlock" hidden>Unlock key</button>
+      <button type="button" class="btn" id="btn-register" hidden>Generate and register a key</button>
+      <button type="button" class="btn" id="btn-forget" hidden>Forget the key on this device</button>
+    </div>
+    <p class="ticket-msg" id="key-msg" hidden></p>
+  </div>
+
+</main>
+<footer>
+  <div class="wrap foot">
+    <p class="legal">Helmith is in development. The public desk is not yet funded. A token has not been launched.
+      <span>Prices, funding and any blotter rows are read from Lighter’s public API on Robinhood Chain. Trades you place here execute on Lighter; Helmith is an interface.</span>
+    </p>
+    <div class="socials" id="socials" hidden></div>
+  </div>
+</footer>
+<script src="vendor/wasm_exec.js"></script>
+<script src="js/config.js"></script>
+<script src="js/networks.js"></script>
+<script src="js/signer.js"></script>
+<script src="js/wallet.js"></script>
+<script src="js/exchange.js"></script>
+<script src="js/site.js"></script>
+<script src="js/trade.js"></script>
+</body>
+</html>

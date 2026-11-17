@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+  <!-- Eight-spoke helm: rim, stock, spokes, handles -->
+  <circle cx="32" cy="32" r="27" stroke="currentColor" stroke-width="1.6"/>
+  <circle cx="32" cy="32" r="22.5" stroke="currentColor" stroke-width="1.2" opacity="0.45"/>
+  <circle cx="32" cy="32" r="7.5" stroke="currentColor" stroke-width="1.8"/>
+  <circle cx="32" cy="32" r="2.2" fill="currentColor"/>
+  <g stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+    <path d="M32 9.5 V24.5"/>
+    <path d="M32 39.5 V54.5"/>
+    <path d="M9.5 32 H24.5"/>
+    <path d="M39.5 32 H54.5"/>
+    <path d="M16.1 16.1 L26.6 26.6"/>
+    <path d="M37.4 37.4 L47.9 47.9"/>
+    <path d="M47.9 16.1 L37.4 26.6"/>
+    <path d="M26.6 37.4 L16.1 47.9"/>
+  </g>
+  <g fill="currentColor">
+    <circle cx="32" cy="8.2" r="2.4"/>
+    <circle cx="32" cy="55.8" r="2.4"/>
+    <circle cx="8.2" cy="32" r="2.4"/>
+    <circle cx="55.8" cy="32" r="2.4"/>
+    <circle cx="15.15" cy="15.15" r="2.4"/>
+    <circle cx="48.85" cy="48.85" r="2.4"/>
+    <circle cx="48.85" cy="15.15" r="2.4"/>
+    <circle cx="15.15" cy="48.85" r="2.4"/>
+  </g>
+</svg>

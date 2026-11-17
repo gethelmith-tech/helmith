@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs · Helmith</title>
+<meta name="description" content="How to read the Helmith desk, where the live figures come from, and how the blotter is wired.">
+<meta name="theme-color" content="#0c1417">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://helmith.com/docs.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Helmith">
+<meta property="og:title" content="Docs · Helmith">
+<meta property="og:description" content="How to read the Helmith desk, where the live figures come from, and how the blotter is wired.">
+<meta property="og:url" content="https://helmith.com/docs.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docs · Helmith">
+<meta name="twitter:description" content="How to read the Helmith desk, where the live figures come from, and how the blotter is wired.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body data-page="docs">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <svg class="mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="27" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="32" cy="32" r="22.5" stroke="currentColor" stroke-width="1.2" opacity="0.45"/>
+        <circle cx="32" cy="32" r="7.5" stroke="currentColor" stroke-width="1.8"/>
+        <circle cx="32" cy="32" r="2.2" fill="currentColor"/>
+        <g stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <path d="M32 9.5 V24.5"/><path d="M32 39.5 V54.5"/><path d="M9.5 32 H24.5"/><path d="M39.5 32 H54.5"/>
+          <path d="M16.1 16.1 L26.6 26.6"/><path d="M37.4 37.4 L47.9 47.9"/>
+          <path d="M47.9 16.1 L37.4 26.6"/><path d="M26.6 37.4 L16.1 47.9"/>
+        </g>
+        <g fill="currentColor">
+          <circle cx="32" cy="8.2" r="2.4"/><circle cx="32" cy="55.8" r="2.4"/>
+          <circle cx="8.2" cy="32" r="2.4"/><circle cx="55.8" cy="32" r="2.4"/>
+          <circle cx="15.15" cy="15.15" r="2.4"/><circle cx="48.85" cy="48.85" r="2.4"/>
+          <circle cx="48.85" cy="15.15" r="2.4"/><circle cx="15.15" cy="48.85" r="2.4"/>
+        </g>
+      </svg>
+      <span class="name">Helmith</span>
+    </a>
+    <ul class="menu" id="menu">
+      <li><a href="trade.html">Trade</a></li>
+      <li><a href="desk.html">Desk</a></li>
+      <li><a href="markets.html">Markets</a></li>
+      <li><a href="agent.html">Agent</a></li>
+      <li><a href="risk.html">Risk</a></li>
+      <li><a href="roadmap.html">Roadmap</a></li>
+      <li><a href="token.html">Token</a></li>
+      <li><a href="docs.html" aria-current="page">Docs</a></li>
+    </ul>
+    <div class="actions">
+      <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="menu">☰</button>
+      <a class="btn primary" href="trade.html">Open the desk</a>
+    </div>
+  </div>
+</header>
+<div class="ticker" aria-label="Live Lighter prices"><div id="ticker"><div class="ticker-load">Reading Lighter…</div></div></div>
+<main id="main">
+
+<section class="page-head" style="padding-bottom:0">
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">Helmith</a> / Docs</p>
+    <span class="kicker">The standing book</span>
+    <h1>Reading the desk.</h1>
+  </div>
+</section>
+<section>
+  <div class="wrap docs-layout">
+    <nav class="docs-rail" aria-label="On this page">
+      <p>On this page</p>
+      <a href="#what">What Helmith is</a>
+      <a href="#data">Where the figures come from</a>
+      <a href="#blotter">The blotter</a>
+      <a href="#limits">Limits and the kill switch</a>
+      <a href="#token">Token</a>
+    </nav>
+    <div class="prose">
+      <h2 id="what">What Helmith is</h2>
+      <p>Helmith is a public trading desk for perpetual markets on <a href="https://docs.lighter.xyz/developers/robinhood-chain/overview" target="_blank" rel="noopener">Lighter, on Robinhood Chain</a>, with USDG as collateral. The site is a window onto that desk: live markets now, and a blotter that will show the desk’s own positions and fills once an account is funded.</p>
+      <p>It is in development. It is not a broker, not a place to deposit funds today, and not advice.</p>
+
+      <h2 id="data">Where the figures come from</h2>
+      <p>Prices, volume, open interest and funding are requested in this browser from Lighter’s public REST API, which allows cross-origin reads:</p>
+      <ul>
+        <li><code>GET https://api.rh.lighter.xyz/api/v1/orderBookDetails</code></li>
+        <li><code>GET https://api.rh.lighter.xyz/api/v1/funding-rates</code> — only rows whose exchange is <code>lighter</code> are shown as funding.</li>
+        <li>A funded blotter will also call <code>/api/v1/account?by=index&amp;value=…</code> and <code>/api/v1/trades?account_index=…</code>.</li>
+      </ul>
+      <p>The ticker and the markets page refresh about every twenty seconds. If the API cannot be reached, the page will say so. It will not fill the table with remembered or invented numbers.</p>
+      <p>Open interest is shown as a USDG notional (size times mark). Volume is Lighter’s daily quote-token volume. Maximum leverage is computed from the venue’s minimum initial margin fraction, and is Lighter’s cap, not Helmith’s.</p>
+
+      <h2 id="blotter">The blotter</h2>
+      <p>The desk page reads <code>HELMITH.account</code> from <code>js/config.js</code>. Leave it <code>null</code> and the page shows an empty book. Set it to a Lighter account index, or to an L1 address, and the page will load that account’s collateral, positions and recent fills from the public API.</p>
+      <p>No row is drawn until that call returns one.</p>
+
+      <h2 id="limits">Limits and the kill switch</h2>
+      <p>The standing orders for the agent — leverage, size, a daily loss halt, an expiring key, and a human kill switch — are described on the <a href="agent.html">agent</a> and <a href="risk.html">risk</a> pages. The numerical caps will be posted there before the first real order.</p>
+
+      <h2 id="token">Token</h2>
+      <p>A token has not been launched. No contract address is published. When one exists, it will appear on the <a href="token.html">token</a> page first.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p class="legal">Helmith is in development. The desk is not yet funded. A token has not been launched.
+      <span>Prices, funding and any future blotter rows are read from Lighter’s public API on Robinhood Chain.</span>
+    </p>
+    <div class="socials" id="socials" hidden></div>
+  </div>
+</footer>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
