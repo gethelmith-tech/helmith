@@ -1,3 +1,11 @@
+/* Drop .html from the address bar when GitHub Pages served the file directly. */
+(function () {
+  var path = location.pathname;
+  if (!/\.html$/.test(path)) return;
+  var clean = path.replace(/\/index\.html$/, "/").replace(/\.html$/, "");
+  if (clean !== path) history.replaceState(null, "", clean + location.search + location.hash);
+})();
+
 (function () {
   "use strict";
   const cfg = window.HELMITH || {};
@@ -102,7 +110,7 @@
           </tbody>
         </table>
       </div>
-      <p class="meta-row"><span class="src-tag">${api.SOURCE}</span><span>USDG notional. Refreshed from the public API.</span><a href="markets.html">All markets</a></p>`;
+      <p class="meta-row"><span class="src-tag">${api.SOURCE}</span><span>USDG notional. Refreshed from the public API.</span><a href="/markets">All markets</a></p>`;
   }
 
   function marketsPage() {

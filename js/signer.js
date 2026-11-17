@@ -2,7 +2,7 @@
    CreateClient is given an empty URL; all HTTP stays in JavaScript. */
 (function (w) {
   "use strict";
-  const WASM_URL = "vendor/lighter-signer.wasm";
+  const WASM_URL = "/vendor/lighter-signer.wasm";
   let ready = null;
   let goRuntime = null;
 
